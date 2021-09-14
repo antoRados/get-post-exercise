@@ -1,0 +1,30 @@
+Options add additional instructions on either the response you are receiving or the code you are sending to the server.
+-i for example (or -include) returns the HTTP response headers in the output.  The headers can include things like server name,
+cookies, dates, and versioning.
+
+1) -0 (Tells curl to use HTTP version 1.0)
+2) -k (By default, every SSL connection curl makes is verified to be secure. This option allows curl to proceed and operate even for server           connections otherwise considered insecure.  The server connection is verified by making sure the server's certificate contains the             right name and verifies successfully using the cert store.)
+3) -4 (This option tells curl to resolve names to IPv4 addresses only, and not for example try IPv6.)
+4) -: (Tells curl to use a separate operation for the following URL and associated options. This allows you to send
+       several URL requests, each with their own specific options, for example, such as different user names or custom requests for each.)
+5) -o (Write output to <file> instead of stdout. If you are using {} or [] to fetch multiple documents, you should quote the
+       URL and you can use '#' followed by a number in the <file> specifier. That variable will be replaced with the current
+       string for the URL being fetched. Like in:
+
+               curl "http://{one,two}.example.com" -o "file_#1.txt"
+
+       or use several variables like:
+
+               curl "http://{site,host}.host[1-5].com" -o "#1_#2"
+
+       You may use this option as many times as the number of
+       URLs you have. For example, if you specify two URLs on the
+       same command line, you can use it like this:
+
+                curl -o aa example.com -o bb example.net
+
+       and the order of the -o options and the URLs doesn't
+       matter, just that the first -o is for the first URL and so
+       on, so the above command line can also be written as
+
+                curl example.com example.net -o aa -o bb)
